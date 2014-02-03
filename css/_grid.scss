@@ -1,0 +1,43 @@
+$maket-width: 960px;
+$maket-min-width: 940px;
+$grid-count: 4;
+$grid-width: 100%/4;
+$grid-indent: 0px;
+
+@mixin boxSizing($box-size) {
+	-webkit-box-sizing: $box-size;
+	-moz-box-sizing: $box-size;
+	box-sizing: $box-size;
+}
+
+.grid-container {
+	max-width: $maket-width;
+	min-width: $maket-min-width;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.grid-1 {
+	float: left;
+	min-height: 1px;
+	@include boxSizing(border-box);
+	padding-left: $grid-indent;
+	padding-right: $grid-indent;
+}
+
+@for $i from 1 through $grid-count {
+	.grid-#{ $i } {
+		@extend .grid-1;
+	}
+}
+@for $i from 1 through $grid-count {
+	.grid-#{ $i } {
+		width: $grid-width * $i;
+	}
+}
+
+.clearfix:after, .grid-container:after {
+	content: '';
+	clear: both;
+	display: table;
+}

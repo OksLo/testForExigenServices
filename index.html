@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<!--[if IE 8 ]><html class="ie ie8" dir="ltr" lang="en-US"> <![endif]-->
+<!--[if IE 9 ]><html class="ie ie9" dir="ltr" lang="en-US"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html dir="ltr" lang="en-US"> <!--<![endif]-->
+
+<head>
+	<title>Test Task for Exigen Services</title>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<link type="text/css" rel="stylesheet" href="css/style.css">
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+</head>
+
+<body>
+<div class="wrap">
+	<div class="grid-container">
+
+		<header id="header" class="clearfix">
+			<div >
+				<div class="grid-1">
+					<figure class="b-foto"><img src="img/Josh-Lucas.jpg"></figure>
+				</div>
+				<div class="grid-3">
+					<div class="b-info fleft">
+						<div class="b-name b-edit"><span class="i-text" contenteditable="true">John Smith</span></div>
+						<div class="b-adress b-edit"><span class="i-text" contenteditable="true">Portland, Oregon, USA</span></div>
+						<div class="b-lang b-edit"><span class="i-text" contenteditable="true">English</span></div>
+						<div class="b-skills">
+							<a href="#" class="i-btn strong">php</a>
+							<a href="#" class="i-btn strong">ruby</a>
+							<a href="#" class="i-btn medium">javascript</a>
+							<a href="#" class="i-btn low">actionscript</a>
+						</div>
+						<div class="b-skills_add"><span class="i-text" contenteditable="true">Add skills</span></div>
+					</div>
+					<div class="fright b-btn_print">
+						<a href="" class="i-btn i-btn_print">Print this page</a>
+					</div>
+				</div>
+			</div>
+		</header><!--header-->
+
+	<section id="content">
+		<div class="row clearfix">
+			<div class="grid-1 b-block">
+				<div class="b-title">
+					<h3>Portfolio</h3>
+					<div class="i-clarify">PHP, Ruby, Javascript</div>
+				</div>
+				<div class="b-content">
+					<ul>
+						<li><strong>NavalPlan</strong>, PHP, Ruby</li>
+						<li><strong>MyTime</strong>, Javascript</li>
+						<li><strong>Formidable</strong>, PHP, Ruby</li>
+						<li><strong>MyTime</strong>, Javascript</li>
+						<li><strong>Monsoon</strong>, ActionScript</li>
+					</ul>
+				</div>
+			</div>
+			<div class="grid-1 b-block">
+				<div class="b-title">
+					<h3>Experience</h3>
+				</div>
+				<div class="b-content">
+					<ul>
+						<li><strong>PHP</strong>, 6 years</li>
+						<li><strong>Ruby</strong>, 7 years</li>
+						<li><strong>Javascript</strong>, 4 years</li>
+						<li><strong>ActionScript</strong>, 3 years</li>
+					</ul>
+				</div>
+			</div>
+			<div class="grid-1 b-block">
+				<figure class="b-figure"><img src="img/sample-code.png"></figure>
+			</div>
+			<div class="grid-1 b-block aligncenter">
+				<div class="b-title">
+					<h3>Availability</h3>
+				</div>
+				<div class="t1">Full-time</div>
+
+				<div class="b-content hr-line">
+					<h3>Preferred environment</h3>
+					Git, GitHub, vim, emacs, Jenkins, Mac OSX
+				</div>
+			</div>
+		</div>
+		<div class="row hr-line clearfix">
+			<div class="grid-1 b-block b-block_blockquote">
+				<div class="b-title">
+					<h3>The most amazing …</h3>
+				</div>
+				<div class="b-content"><blockquote>… Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua et dolore magna aliqua et dol ut labore et dolore</blockquote><span class="author alignright">- Martin</span></div>
+		</div>
+		<div class="grid-1 b-block b-block_blockquote">
+			<div class="b-title">
+				<h3>In clients I look for …</h3>
+			</div>
+			<div class="b-content">
+				<blockquote>… Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</blockquote>
+				<div class="author alignright">- Martin</div>
+			</div>
+		</div>
+		<div class="grid-1 b-block">
+		</div>
+		<div class="grid-1 b-block b-block_blockquote">
+			<div class="b-title">
+				<h3>Note</h3>
+			</div>
+			<div class="b-content"><blockquote>… Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</blockquote></div>
+		</div>
+		</div>
+	</div><!--container-->
+</section><!--content-->
+</div>
+</div><!--wrap-->
+
+<script>
+	$(function() {
+		var oldVal;
+		$('.b-skills a').append('<span class="i-close">×</span>');
+		var selectLevel=$('<div class="b-select"><span class="i-select_val">Strong</span><ul class="i-select_list"></ul></div>');
+		function createSelect(levelSkills){
+			for (var i=0; i < levelSkills.length; i++) {
+				selectLevel.find('.i-select_list').append('<li>'+levelSkills[i]+'</li>');
+			};
+		};
+		createSelect(['strong','medium','low']);
+
+		$('<a href="#" class="i-ok">✔</a><a href="#" class="i-close">×</a>').appendTo('.b-edit');
+		selectLevel.add($('<a href="#" class="i-ok">✔</a>')).appendTo('.b-skills_add');
+		
+		$('.b-edit,.b-skills_add').focusin(function(){
+			$(this).addClass('active');
+		}).focusout(function(){
+			$(this).removeClass('active');
+			if (!$(this).find('.i-text').text()) $(this).find('.i-text').text(oldVal);
+		});
+		$('.b-edit .i-text').focus(function(){
+			oldVal=$(this).text();
+		});
+		
+		$('.b-skills_add').on('mousedown','.i-ok',function(){
+			
+			var newSkill=$(this).closest('.b-skills_add').find('.i-text').text();
+			var newSkillLevel=$(this).closest('.b-skills_add').find('.b-select').find('.i-select_val').text().toLowerCase();
+			var target=$(this).closest('.b-skills_add').prev('.b-skills').find('.'+newSkillLevel).last();
+			newSkill=$('<a href="#" class="i-btn '+ newSkillLevel +'">'+newSkill+'<span class="i-close">×</span></a>');
+			if (target.length) {
+				target.after(newSkill);
+			} else {
+				switch (newSkillLevel) {
+					case 'strong': 
+						$(this).closest('.b-skills_add').prev('.b-skills').prepend(newSkill);
+						break;
+					case 'low':
+						$(this).closest('.b-skills_add').prev('.b-skills').append(newSkill);
+						break;
+					case 'medium':
+						target= $(this).closest('.b-skills_add').prev('.b-skills').find('.low').first();
+						target ? target.before(newSkill) : $(this).closest('.b-skills_add').prev('.b-skills').append(newSkill);
+				}
+			};
+			$(this).parent().blur();
+		
+		}).on('mousedown','.i-ok',function(e){
+			e.preventDefault();
+		}).on('click','.i-select_list li',function(e){
+			
+			e.preventDefault();
+			
+		}).on('mousedown','.i-select_list li',function(e){
+			
+			e.preventDefault();
+			$(this).closest('.b-select').find('.i-select_val').text($(this).text());
+			
+		});
+		
+		$(document).find('.b-skills').on("click","a",function(e){
+		
+				e.preventDefault();
+				
+		}).on("click",'.i-close',function(e){
+			
+			e.preventDefault();
+			$(this).parent('a').remove();
+			
+		});
+		
+		$('.i-btn_print').on("click",function(){
+			window.print();
+		});
+		
+		$('.b-edit .i-close').on('click',function(e){
+			
+			e.preventDefault();
+			
+		}).on('mousedown',function(e){
+			e.preventDefault();
+			var text=$(this).closest('.b-edit').find('.i-text');
+			//text.val(text.attr('value'));
+			text.text(oldVal);
+			$(this).parent().blur();
+			$(this).parent().find('.i-text').blur();
+			
+		})
+		
+		$('.b-edit .i-ok').on('click', function(e){
+			
+			e.preventDefault();
+			
+		}).on('mousedown',function(e){
+			
+			e.preventDefault();
+			var text=$(this).closest('.b-edit').find('.i-text');
+			if (!text.text()) text.text(oldVal);
+			$(this).parent().blur();
+			$(this).parent().find('.i-text').blur();
+			
+		});
+
+	})
+
+</script>
+
+</body>
+</html>
